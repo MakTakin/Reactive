@@ -2,17 +2,17 @@ import {Link} from "react-router-dom"
 import styled from 'styled-components'
 
 export const PostLink = styled(Link)`
-    border: none;
+    border: 1px solid #0737bf;
     outline: none;
     margin: 0 10px;
     padding: 10px;
     border-radius: 5px;
-    background: #032c9e;
-    color: #fff;
+    color: #000;
     text-decoration: none;
 
     &:hover {
         background: #0737bf;
+        color: #fff;
     }
 `
 

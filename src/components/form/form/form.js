@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { EditUserButton, FormButton, UserButton } from '../ui/buttons';
-import { changeActivateUser } from '../../redux/actions/actions';
+import { EditUserButton, FormButton } from '../../ui/buttons';
+import { changeActivateUser } from '../../../redux/actions/actions';
 
 const FormContainer = styled.form`
     margin-top: 5%;
@@ -27,9 +27,7 @@ const FormInput = styled.input`
         border: 1px solid #065bf9;
     }
     &:disabled {
-        color: black;
-        background-color: #fff;
-        cursor: pointer;
+        cursor: not-allowed;
     }
 `
 
@@ -45,15 +43,26 @@ const FormButtonContainer = styled.div`
 
 const Forma = styled.div``
 
-const Form = ({ user, changeUser, onSubmit, activateUser, dispatch }) => {
+const Form = ({ user, setUser, onSubmit, activateUser, dispatch }) => {
+
+    const changeUser = (e) => {
+        const editUser = { ...user }
+
+        switch (e.target.name) {
+            case 'street':
+            case 'city':
+            case 'suite':
+                editUser.address[e.target.name] = e.target.value
+                break
+
+            default:
+                editUser[e.target.name] = e.target.value
+        }
+        setUser(editUser)
+    }
+
     return (
         <Forma>
-            <EditUserButton
-                activateUser={activateUser}
-                onClick={() => dispatch(changeActivateUser(true))}
-            >
-                Edit User
-            </EditUserButton>
             <FormContainer onSubmit={(e) => onSubmit(e)}>
                 <FormFlex>
                     <FormColumn>
@@ -122,8 +131,15 @@ const Form = ({ user, changeUser, onSubmit, activateUser, dispatch }) => {
                         type='submit'
                         activateUser={activateUser}
                     >
-                        Сохранить
+                        Save
                     </FormButton>
+                    <EditUserButton
+                        type='button'
+                        activateUser={activateUser}
+                        onClick={() => dispatch(changeActivateUser(true))}
+                    >
+                        Edit User
+                    </EditUserButton>
                 </FormButtonContainer>
             </FormContainer>
         </Forma>

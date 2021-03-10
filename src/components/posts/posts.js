@@ -1,42 +1,32 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Loader from '../ui/loader';
 import ListPosts from './listPosts/listPosts';
-import { SERVER_URL } from '../../constants/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from '../ui/headers';
 import { BackLink } from '../ui/links';
-import { appLoad, appLoading, fetchPostsFailed, fetchPostsSuccess } from '../../redux/actions/actions';
+import { getPosts } from '../../redux/actions/getPosts';
 
 const HeaderContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 20px;
+    justify-content: justify-center;
     align-items: center;
-`
-
-const InvisibleBlock = styled.div`
-    visibility: hidden;
+    
+    a {
+        align-self: flex-start;
+    }
 `
 
 const Posts = (props) => {
     const dispatch = useDispatch()
     const posts = useSelector(state => state.posts.posts)
-    const loading = useSelector(state => state.loading.loading)
-
-    const getPosts = useCallback(async () => {
-        dispatch(appLoading())
-        try {
-            const response = await fetch(`${SERVER_URL}posts?userId=${props.match.params.id}`)
-            const posts = await response.json()
-            dispatch(fetchPostsSuccess(posts))
-            dispatch(appLoad())
-        } catch (error) {
-            dispatch(fetchPostsFailed(error))
-        }
-    }, [dispatch])
+    const loading = useSelector(state => state.app.loading)
+    const user  =  useSelector(state => state.users.users.find( user => user.id === props.match.params.id ))
 
     useEffect(() => {
-        getPosts()
+        dispatch(getPosts(props.match.params.id))
     }, [])
 
     return (
@@ -48,18 +38,16 @@ const Posts = (props) => {
                         <>
                             <HeaderContainer>
                                 <BackLink to='/'>Back to users</BackLink>
-                                <Header>{props.location.username} Posts</Header>
-                                <InvisibleBlock>Back to users</InvisibleBlock>
+                                <Header>{user.username} Posts</Header>
                             </HeaderContainer>
                             <ListPosts
                                 posts={posts}
-                                username={props.location.username}
+                                username={user.username}
                             />
                         </>  :
                         <HeaderContainer>
                             <BackLink to='/'>Back to users</BackLink>
                             <Header>This user doesn't have any posts yet...</Header>
-                            <InvisibleBlock>Back to users</InvisibleBlock>
                         </HeaderContainer>
 
                     }

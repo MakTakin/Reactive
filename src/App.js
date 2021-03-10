@@ -5,6 +5,7 @@ import Modal from './components/modal/modal';
 import Posts from './components/posts/posts';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import ModalTest from './components/modal/modalTest';
 
 const Container = styled.div`
     max-width: 1200px;
@@ -41,7 +42,9 @@ function App() {
             /> :
             null
         }
+        <ModalTest/>
     </Container>
+
     )
 }
 

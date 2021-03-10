@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { redactFormUser } from '../../../../redux/actions/actions';
-import { UserButton } from '../../../ui/buttons';
+import { showModal } from '../../../../redux/actions/actions';
+import { InfoButton } from '../../../ui/buttons';
 import { PostLink } from '../../../ui/links';
 import { useDispatch } from 'react-redux';
 
@@ -55,29 +55,26 @@ const User = (props) => {
                     {props.user.name}
                 </Name>
                 <UserName>
-                    <b>username</b>: {props.user.username}
+                    username: <b>{props.user.username}</b>
                 </UserName>
                 <Phone>
-                    <b>phone</b>: {props.user.phone}
+                    phone: <b>{props.user.phone}</b>
                 </Phone>
                 <Email>
-                    <b>email</b>: {props.user.email}
+                    email: <b>{props.user.email}</b>
                 </Email>
             </UserInfo>
 
             <UserButtons>
-                <UserButton
-                    onClick={() => dispatch(redactFormUser(props.user.id))}
+                <InfoButton
+                    onClick={() => dispatch(showModal('UPDATE_USER', props.user))}
                 >
-                    more information
-                </UserButton>
+                    More Information
+                </InfoButton>
                 <PostLink
-                    to={{
-                    pathname: `/posts/${props.user.id}`,
-                    username: props.user.username
-                    }}
+                    to={`/posts/${props.user.id}`}
                 >
-                    show user posts
+                    Show User Posts
                 </PostLink>
             </UserButtons>
         </UserContainer>

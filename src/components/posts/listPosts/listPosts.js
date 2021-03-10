@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Post from './post/post';
 
 const Posts = styled.div`
-    height: 80vh;
+    height: 75vh;
     padding-right: 10px;
     overflow-y: auto;
     ::-webkit-scrollbar {

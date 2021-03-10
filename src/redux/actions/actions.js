@@ -6,10 +6,10 @@ import {
     FETCH_POSTS_FAILED,
     FETCH_POSTS_SUCCESS,
     ADD_USER,
-    ADD_FORM_USER,
     REDACT_USER,
-    REDACT_FORM_USER,
-    CHANGE_ACTIVATE_USER
+    CHANGE_ACTIVATE_USER,
+    SHOW_MODAL,
+    HIDE_MODAL
 } from './types';
 
 export const appLoading = () => {
@@ -52,19 +52,6 @@ export const fetchPostsFailed = ( error ) => {
     }
 }
 
-export const redactFormUser = ( status ) => {
-    return {
-        type: REDACT_FORM_USER,
-        payload: status
-    }
-}
-export const addFormUser = ( status ) => {
-    return {
-        type: ADD_FORM_USER,
-        payload: status
-    }
-}
-
 export const addUser = ( user ) => {
     return {
         type: ADD_USER,
@@ -84,5 +71,20 @@ export const changeActivateUser = ( status ) => {
     return {
         type: CHANGE_ACTIVATE_USER,
         payload: status
+    }
+}
+
+export const showModal = ( type, props ) => {
+    console.log(type)
+    return {
+        type: SHOW_MODAL,
+        modalType: type,
+        modalProps: props
+    }
+}
+
+export const hideModal = ( ) => {
+    return {
+        type: HIDE_MODAL
     }
 }
