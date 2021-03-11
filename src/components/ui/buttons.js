@@ -21,11 +21,12 @@ export const InfoButton = styled(UserButton)`
     outline: none;
     margin: 0 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 5px;
     background: transparent;
     color: #000;
     cursor: pointer;
+    text-align: center;
 
     &:hover {
         background: #0737bf;

@@ -1,8 +1,8 @@
 import { HIDE_MODAL, SHOW_MODAL } from '../actions/types';
 
 const initiallState = {
-    modalType: null,
-    modalProps: {}
+    type: null,
+    props: {}
 }
 
 export const ModalReducer = (state = initiallState, action) => {
@@ -10,8 +10,8 @@ export const ModalReducer = (state = initiallState, action) => {
         case SHOW_MODAL:
             return {
                 ...state,
-                modalType: action.modalType,
-                modalProps: action.modalProps
+                type: action.modalType,
+                props: action.modalProps
             }
 
         case HIDE_MODAL:

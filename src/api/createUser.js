@@ -1,4 +1,4 @@
-export const fetchNewUser = async (url, user ) => {
+export const fetchСreateUser = async (url, user ) => {
     const bodyRequest = {
         method: 'POST',
         body: JSON.stringify(user),

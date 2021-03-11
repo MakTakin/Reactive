@@ -41,8 +41,6 @@ const FormButtonContainer = styled.div`
     text-align: center;
 `
 
-const Forma = styled.div``
-
 const Form = ({ user, setUser, onSubmit, activateUser, dispatch }) => {
 
     const changeUser = (e) => {
@@ -62,7 +60,6 @@ const Form = ({ user, setUser, onSubmit, activateUser, dispatch }) => {
     }
 
     return (
-        <Forma>
             <FormContainer onSubmit={(e) => onSubmit(e)}>
                 <FormFlex>
                     <FormColumn>
@@ -142,7 +139,6 @@ const Form = ({ user, setUser, onSubmit, activateUser, dispatch }) => {
                     </EditUserButton>
                 </FormButtonContainer>
             </FormContainer>
-        </Forma>
     )
 }
 export default Form

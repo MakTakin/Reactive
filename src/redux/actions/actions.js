@@ -75,7 +75,6 @@ export const changeActivateUser = ( status ) => {
 }
 
 export const showModal = ( type, props ) => {
-    console.log(type)
     return {
         type: SHOW_MODAL,
         modalType: type,

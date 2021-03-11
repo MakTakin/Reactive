@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
 import Users from './components/users/users';
-import Modal from './components/modal/modal';
 import Posts from './components/posts/posts';
-import { useSelector } from 'react-redux';
+import Modal from './components/modal/modal';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ModalTest from './components/modal/modalTest';
 
 const Container = styled.div`
     max-width: 1200px;
@@ -19,8 +17,6 @@ const Container = styled.div`
 `
 
 function App() {
-    const editUser = useSelector(state => state.users.editUser)
-    const addUser = useSelector(state => state.users.addUser)
 
     return (
     <Container>
@@ -36,15 +32,8 @@ function App() {
             />
             <Redirect to='/'/>
         </Switch>
-        { editUser || addUser ?
-            <Modal
-                editUser={editUser}
-            /> :
-            null
-        }
-        <ModalTest/>
+        <Modal/>
     </Container>
-
     )
 }
 

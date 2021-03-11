@@ -9,6 +9,8 @@ export const PostLink = styled(Link)`
     border-radius: 5px;
     color: #000;
     text-decoration: none;
+    font-size: 14px;
+    text-align: center;
 
     &:hover {
         background: #0737bf;

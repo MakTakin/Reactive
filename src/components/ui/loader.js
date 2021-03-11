@@ -13,7 +13,7 @@ const rotate = keyframes`
 export const Loading = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 40vh;
+    margin: 40vh;
   
     &::after {
         content: " ";
